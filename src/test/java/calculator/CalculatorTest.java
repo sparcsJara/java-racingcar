@@ -2,6 +2,8 @@ package calculator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -55,17 +57,10 @@ public final class CalculatorTest {
         assertThat(result).isEqualTo(6);
     }
 
-    @Test
-    @DisplayName("정수가 아닌 값이 포함될 때")
-    void notIntegerInputExceptionTest() {
-        String input = "1,a,3";
-        assertThatIllegalArgumentException().isThrownBy(() -> calculator.calculate(input));
-    }
-
-    @Test
-    @DisplayName("음수 값이 포함될 때")
-    void negativeNumberInputExceptionTest() {
-        String input = "1,-2,3";
+    @ParameterizedTest
+    @ValueSource(strings = {"1,a,3", "1,-2,3"})
+    @DisplayName("잘못된 값이 포함될 때")
+    void illegalArgumentExceptionTest(String input) {
         assertThatIllegalArgumentException().isThrownBy(() -> calculator.calculate(input));
     }
 }
