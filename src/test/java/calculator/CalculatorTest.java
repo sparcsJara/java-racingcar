@@ -1,6 +1,5 @@
-package calculatortest;
+package calculator;
 
-import calculator.Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +30,6 @@ public final class CalculatorTest {
         Integer result = calculator.calculate(input);
         assertThat(result).isEqualTo(3);
     }
-
 
     @Test
     @DisplayName("여러개의 정수가 콤마와 한께 입력될 때")
