@@ -7,8 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Calculator {
-    private final String[] defaultSplitters = {",", ";"};
-    private final int defaultReturnValue = 0;
+    private final static String[] defaultSplitters = {",", ";"};
+    private final static int defaultReturnValue = 0;
+    private final static Pattern customSplitterRegexPattern = Pattern.compile("//(.)\n(.*)");
 
     public int calculate(String input) {
         if (isNullOrBlank(input)) {
@@ -27,7 +28,7 @@ public final class Calculator {
     }
 
     private List<String> parseStringNumbers(String input) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher m = customSplitterRegexPattern.matcher(input);
         if (m.find()) {
             String customDelimiter = m.group(1);
             return Arrays.asList(m.group(2).split(customDelimiter));
