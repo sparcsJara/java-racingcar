@@ -61,7 +61,7 @@ public final class Calculator {
 
     private void checkInputNumberIsAllowed(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException("음수 값이 삽입되었습니다.");
+            throw new IllegalArgumentException("음수 값이 삽입되었습니다: " + number);
         }
     }
 
